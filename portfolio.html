@@ -1,84 +1,911 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Cossi Trinité</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — BAHOUN-HOUTOUKPE Octave</title>
   <style>
+    /* Reset & base */
+    :root {
+      --bg: #0f1724;
+      /* bleu nuit */
+      --card: #0b1220;
+      --muted: #9aa7bf;
+      --accent: #7c3aed;
+      /* violet */
+      --glass: rgba(255, 255, 255, 0.04);
+      --radius: 14px;
+      --maxw: 1100px;
+      --glass-2: rgba(255, 255, 255, 0.03);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Mode clair */
+    .light {
+      --bg: #f6f8fb;
+      --card: #fff;
+      --muted: #5a6473;
+      --accent: #7c3aed;
+      --glass: rgba(0, 0, 0, 0.04);
+      --glass-2: rgba(0, 0, 0, 0.03);
+      color-scheme: light;
+    }
+
+    .light body {
+      background: linear-gradient(180deg, var(--bg), #e6eaff 120%);
+      color: #1a2233;
+    }
+
+    .light nav a {
+      color: var(--muted);
+    }
+
+    .light nav a:hover {
+      color: #222;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .light .card {
+      background: var(--card);
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.04);
+    }
+
+    .light .pill {
+      background: var(--glass);
+      color: var(--muted);
+    }
+
+    .light .tag {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--muted);
+    }
+
+    .light .btn {
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      color: #fff;
+    }
+
+    .light .btn.ghost {
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      color: var(--muted);
+    }
+
+    .light footer {
+      color: var(--muted);
+    }
+
+    .light input,
+    .light textarea {
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      color: #1a2233;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
     body {
-      margin: 0; font-family: Arial, sans-serif; line-height: 1.6;
-      background: #0f172a; color: #e2e8f0;
+      height: 100%
     }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg), #061026 120%);
+      color: #e6eef8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .light body {
+      background: linear-gradient(180deg, var(--bg), #e6eaff 120%);
+      color: #1a2233;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw)
+    }
+
+    /* Top nav */
     header {
-      background: #1e293b; padding: 20px; text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px
     }
-    header h1 { margin: 0; color: #38bdf8; }
-    nav { margin-top: 10px; }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #16325c, #1f2b4a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--accent);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    nav {
+      display: flex;
+      gap: 12px
+    }
+
     nav a {
-      margin: 0 10px; text-decoration: none; color: #e2e8f0;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px
     }
-    nav a:hover { color: #38bdf8; }
-    section { padding: 40px 20px; max-width: 800px; margin: auto; }
-    h2 { color: #38bdf8; margin-bottom: 10px; }
-    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03)
+    }
+
+    .light nav a {
+      color: var(--muted);
+    }
+
+    .light nav a:hover {
+      color: #222;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    main {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(2, 6, 23, 0.7)
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 28px;
+      align-items: center
+    }
+
+    .avatar {
+      background: linear-gradient(180deg, #0b1220, #0f1b2e);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #112a46, #0f1724);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px
+    }
+
+    .meta {
+      width: 100%;
+      text-align: center
+    }
+
+    .meta h4 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--accent)
+    }
+
+    .meta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .intro h1 {
+      font-size: 30px;
+      margin: 0 0 8px 0
+    }
+
+    .intro p {
+      margin: 0 0 18px 0;
+      color: var(--muted)
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--accent), #5b21b6);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.18)
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted)
+    }
+
+    .light .btn {
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      color: #fff;
+    }
+
+    .light .btn.ghost {
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section {
+      margin-top: 26px
+    }
+
     .card {
-      background: #1e293b; padding: 20px; border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px
     }
+
+    .light .card {
+      background: var(--card);
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.04);
+    }
+
+    /* About & skills */
+    .about {
+      display: grid;
+      gap: 20px;
+      align-items: center
+    }
+
+  .bio {
+      flex: 1
+    }
+
+    .interests {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .pill {
+      background: var(--glass);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .light .pill {
+      background: var(--glass);
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px
+    }
+
+    .skill {
+      background: var(--glass-2);
+      padding: 12px;
+      border-radius: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .skill svg {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0
+    }
+
+    .skill strong {
+      display: block
+    }
+
+    .skill span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px
+    }
+
+    .proj {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease
+    }
+
+    .proj:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6)
+    }
+
+    .proj .preview {
+      height: 160px;
+      background: linear-gradient(135deg, #071330, #11243a);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .proj .info {
+      padding: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent)
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 6px 8px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    .light .tag {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--muted);
+    }
+
+    /* Future */
+    .future-list {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .future-item {
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.12), rgba(41, 25, 69, 0.06));
+      padding: 12px;
+      border-radius: 12px;
+      min-width: 180px
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 18px
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    input,
+    textarea {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 10px;
+      color: inherit
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      flex-direction: column
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      text-decoration: none;
+      color: var(--muted)
+    }
+
     footer {
-      background: #1e293b; text-align: center; padding: 15px;
-      margin-top: 40px; font-size: 14px; color: #94a3b8;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center
+    }
+
+    .light footer {
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width:880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px
+      }
+    }
+
+    /* Responsive amélioré */
+    @media (max-width: 700px) {
+      body {
+        padding: 10px;
+      }
+
+      .wrap {
+        max-width: 100vw;
+        padding: 0;
+      }
+
+      main {
+        padding: 10px;
+        border-radius: 12px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+      }
+
+      nav {
+        gap: 6px;
+      }
+
+      nav a {
+        padding: 7px 10px;
+        font-size: 15px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 10px 0;
+      }
+
+      .avatar {
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .photo {
+        width: 120px;
+        height: 120px;
+        font-size: 36px;
+      }
+
+      .meta h4 {
+        font-size: 16px;
+      }
+
+      .meta p {
+        font-size: 14px;
+      }
+
+      .intro h1 {
+        font-size: 22px;
+      }
+
+      .intro p {
+        font-size: 15px;
+      }
+
+      .card {
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .about {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .proj .preview {
+        height: 90px;
+        font-size: 15px;
+      }
+
+      .future-list {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .future-item {
+        min-width: unset;
+        font-size: 15px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      form input,
+      form textarea {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      .socials a {
+        font-size: 15px;
+        padding: 7px;
+      }
+
+      footer {
+        font-size: 12px;
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .photo {
+        width: 80px;
+        height: 80px;
+        font-size: 20px;
+      }
+
+      .intro h1 {
+        font-size: 16px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .future-item {
+        font-size: 13px;
+        padding: 8px;
+      }
+
+      .card {
+        padding: 6px;
+      }
+    }
+
+    li{
+      list-style: none;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1> AKPINFA Cossi Trinité Exhaucé Pérrin</h1>
-    <p>Étudiant en Informatique & Télécommunication  | Futur Ingénieur roboticien </p>
-    <nav>
-      <a href="#about">À propos</a>
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>À propos</h2>
-    <p>Je suis étudiant en Informatique et Télécommunications à l'INSTI de Lokossa. 
-       Passionné par la programmation, le développement web, la robotique, l'IA et les nouvelles technologies, j’apprends chaque jour pour devenir un grand développeur.</p>
-  </section>
-
-  <section id="projects">
-    <h2>Mes projets</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Calculatrice</h3>
-        <p>Une calculatrice en HTML/CSS/JS qui effectue les opérations de base.</p>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">AE</div>
+        <div>
+          <div style="font-weight:700">AKPINFA Cossi Trinité Exhaucé Perrin</div>
+          <div style="font-size:12px;color:var(--muted)">Étudiant — Génie Électrique & Informatique</div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Quiz interactif</h3>
-        <p>Un quiz sur la mythologie avec score et corrections.</p>
-      </div>
-      <div class="card">
-        <h3>Jeu du Serpent</h3>
-        <p>Un clone du jeu classique Snake en JavaScript.</p>
-      </div>
-      <div class="card">
-        <h3>Dashboard e-commerce</h3>
-        <p>Prototype de tableau de bord style Chariow.</p>
-      </div>
-    </div>
-  </section>
+      <nav>
+        <a href="#projets">Projets</a>
+        <a href="#skills">Compétences</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">À propos</a>
+      </nav>
+      <button id="theme-toggle" class="btn ghost" style="margin-left:18px" aria-label="Changer de thème">🌙</button>
+    </header>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>📧 Email : <a href="mailto:aexhauce@gmail.com" style="color:#38bdf8">aexhauce@gmail.com</a></p>
-    <p>📞 Téléphone : 0154555189</p>
-    <p>📍 Cotonou, Bénin</p>
-  </section>
+    <main>
+      <section class="hero card">
+        <div class="avatar">
+          <div class="photo">AE</div>
+          <div class="meta">
+            <h4>Étudiant & Développeur</h4>
+            <p>Dév Web • Mobile • IA • Télécoms</p>
+          </div>
+          <div style="width:100%" class="pill">En recherche d'opportunités & collaborations</div>
+        </div>
 
-  <footer>
-    © 2025 - Portfolio de Cossi Trinité
-  </footer>
+        <div class="intro">
+          <h1>Salut — je suis Exhaucé<br /><span style="color:var(--accent)">Développeur Web & Mobile</span></h1>
+          <p>🎓 Étudiant en Génie Électrique et Informatique à l’INSTI de Lokossa, je me spécialise en Informatique et
+            Télécommunications. Passionné par la technologie, je développe des compétences à l’intersection de plusieurs
+            domaines :
+            <ul>
+
+              
+
+              <li>  💻 Développement logiciel & applications web/mobiles (PHP, MySQL, JavaScript, Laravel).  </li>
+
+              <li> 🤖  Systèmes embarqués (Arduino, ).  </li>
+
+               <li>  🚀 Futur ingénieur en systèmes embarqués  </li>
+
+          
+            </ul>
+
+            
+
+            </p>
+          <div class="cta">
+            <button class="btn" onclick="scrollToSection('projets')">Voir mes projets</button>
+            <button class="btn ghost" onclick="scrollToSection('contact')">Me contacter</button>
+          </div>
+
+          <div style="margin-top:18px" class="card">
+            <strong>Résumé rapide</strong>
+            <div style="color:var(--muted);margin-top:8px">PHP · Laravel  · MySQL ·
+              Python · Git</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="card about">
+        <div class="bio">
+          <h3>À propos</h3>
+          <p style="color:var(--muted)">Étudiant à l'INSTI (Lokossa). Passionné par  les
+            applications mobiles et le dev web. Fan d'anime — j'apporte créativité et persévérance à
+            mes projets.</p>
+
+          <div style="margin-top:12px">
+            <div style="font-size:13px;color:var(--muted)">Centres d'intérêt</div>
+            <div class="interests" style="margin-top:8px">
+              <div class="pill">Anime</div>
+              <div class="interests" style="margin-top:8px">
+              <div class="pill">Jeux vidéos</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+            <h3 id="skills">Compétences</h3>
+            <div class="skills-grid">
+
+                <div class="skill"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" />
+                </svg>
+                <div><strong>JavaScript</strong><span>Vue / React / Node</span></div>
+                </div>
+
+                <div class="skill"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2v20" stroke="currentColor" />
+                </svg>
+                <div><strong>MySQL</strong><span>Conception BD</span></div>
+                </div>
+                <div class="skill"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" />
+                </svg>
+                <div><strong>Python</strong><span>Data & scripts</span></div>
+                </div>
+                <div class="skill"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7l9 6 9-6" stroke="currentColor" />
+                </svg>
+                <div><strong>Git & GitHub</strong><span>Versioning</span></div>
+                </div>
+                <div class="skill"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12h20" stroke="currentColor" />
+                </svg>
+                <div><strong>Telecoms</strong><span>Réseaux & systèmes</span></div>
+                </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projets">
+        <h3 style="margin-top:18px">Projets</h3>
+        <div class="projects-grid">
+          <article class="proj card"
+            onclick="window.open('https://akpinfa.github.io/Portfolio/calculatrice.html', '_blank')">
+            <div class="preview">
+              <div style="font-weight:700">Calculatrice</div>
+            </div>
+            <div class="info">
+              <div style="display:flex;justify-content:space-between;align-items:center"><strong>Calculatrice
+                  App</strong><span style="color:var(--muted);font-size:13px">Fullstack</span></div>
+              <p style="color:var(--muted);font-size:13px;margin:8px 0">
+              
+              </p>
+              <div class="tags">
+                <div class="tag">HTML</div>
+                <div class="tag">CSS</div>
+                <div class="tag">JS</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj card"
+            onclick="window.open('https://akpinfa.github.io/Portfolio/quiz.html', '_blank')">
+            <div class="preview">
+              <div style="font-weight:700">Quiz App</div>
+            </div>
+            <div class="info">
+              <div style="display:flex;justify-content:space-between;align-items:center"><strong>Quiz App</strong><span
+                  style="color:var(--muted);font-size:13px">Vue.js</span></div>
+              <p style="color:var(--muted);font-size:13px;margin:8px 0">Application de quiz responsive, modes chrono et
+                score dynamique.</p>
+              <div class="tags">
+                <div class="tag">HTML</div>
+                <div class="tag">CSS</div>
+                <div class="tag">JS</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj card"
+            onclick="window.open('https://akpinfa.github.io/Portfolio/Tableau%20de%20bord%20chariow.html', '_blank')">
+            <div class="preview">
+              <div style="font-weight:700">Tableau de bord Chariow</div>
+            </div>
+            <div class="info">
+              <div style="display:flex;justify-content:space-between;align-items:center"><strong>Chariow-Bord</strong><span style="color:var(--muted);font-size:13px">Vue / Laravel</span></div>
+              <p style="color:var(--muted);font-size:13px;margin:8px 0">Un tableau de bord simillaire à celui de chariow .</p>
+              <div class="tags">
+                <div class="tag">HTML</div>
+                <div class="tag">CSS</div>
+                <div class="tag">JS</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Futurs projets</h3>
+        <div class="future-list" style="margin-top:8px">
+          <div class="future-item"><strong>Journal Anime</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Écrire et partager tes ressentis sur les
+                épisodes d'anime.</div>
+          </div>
+          <div class="future-item"><strong>IA de recommandations</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Système de suggestions de cours & groupes
+              d'étude.</div>
+          </div>
+          <div class="future-item"><strong>Chatbot IA</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Assistant virtuel pour infos campus & FAQ.</div>
+          <div class="future-item"><strong>Smart Campus App</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">Système académique intelligent — notes, emploi
+                du temps et IA.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card" style="margin-top:18px">
+        <h3>Contact</h3>
+        <div class="contact-grid" style="margin-top:10px">
+          <form onsubmit="submitContact(event)">
+            <input required name="name" placeholder="Ton nom" />
+            <input required name="email" placeholder="Ton email" />
+            <input name="subject" placeholder="Sujet" />
+            <textarea name="message" placeholder="Message" rows="5" required></textarea>
+            <div style="display:flex;gap:10px">
+              <button class="btn" type="submit">Envoyer</button>
+              <button type="button" class="btn ghost" onclick="clearForm(this)">Effacer</button>
+            </div>
+          </form>
+          Envoyer un mail 
+
+          <div class="socials">
+            <a href="https://akpinfa.github.io/Portfolio">🔗 GitHub</a>
+            <a href="mailto:aexhauce@gmail.com">✉️ Email</a>
+            <a href="https://wa.me/qr/JQLBW744HTAOM1">📱 WhatsApp</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> Exhaucé AKPINFA — Portfolio interactif</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Gestion du thème clair/sombre
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('theme-toggle');
+    function setTheme(mode) {
+      if (mode === 'light') {
+        root.classList.add('light');
+        themeBtn.textContent = '☀️';
+      } else {
+        root.classList.remove('light');
+        themeBtn.textContent = '🌙';
+      }
+      localStorage.setItem('theme', mode);
+    }
+    // Initialisation
+    const userTheme = localStorage.getItem('theme');
+    if (userTheme === 'light') setTheme('light');
+    else setTheme('dark');
+    themeBtn.onclick = () => {
+      setTheme(root.classList.contains('light') ? 'dark' : 'light');
+    };
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openProject(title, desc) {
+      // simple modal style alert — remplacer par modal réel si besoin
+      alert(title + "\n\n" + desc);
+    }
+
+    function submitContact(e) {
+      e.preventDefault();
+      const f = e.target;
+      // demo only — ici on peut connecter à un service (formspree, firebase, api)
+      alert('Merci ' + (f.name.value || 'ami') + '! Ton message a été reçu (simulation).');
+      f.reset();
+    }
+
+    function clearForm(btn) {
+      const f = btn.closest('form'); if (f) f.reset();
+    }
+  </script>
 </body>
+
 </html>
