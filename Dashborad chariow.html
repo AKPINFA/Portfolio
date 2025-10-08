@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prototype Dashboard — Chariow (factice)</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#0b1220; --accent:#6ee7b7; --muted:#9aa4b2;
+    --glass: rgba(255,255,255,0.03);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#071025 0%, #071428 100%);color:#e6eef6;min-height:100vh}
+  .app{display:flex;gap:20px;padding:20px}
+  /* sidebar */
+  .sidebar{width:260px;background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 24px rgba(2,6,23,0.6);height:calc(100vh - 40px);position:sticky;top:20px;overflow:auto}
+  .logo{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+  .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#34d399);display:flex;align-items:center;justify-content:center;font-weight:700;color:#052018}
+  .nav{margin-top:8px}
+  .nav a{display:block;padding:10px;border-radius:8px;color:var(--muted);text-decoration:none;margin-bottom:6px}
+  .nav a.active{background:var(--glass);color:var(--accent);font-weight:600}
+  /* main */
+  .main{flex:1;display:flex;flex-direction:column;gap:18px}
+  .header{display:flex;justify-content:space-between;align-items:center}
+  .search{display:flex;gap:10px;align-items:center}
+  .search input{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;outline:none}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:12px;min-height:86px}
+  .muted{color:var(--muted);font-size:13px}
+  .big{font-size:20px;font-weight:700}
+  /* layout lower */
+  .lower{display:grid;grid-template-columns: 2fr 1fr; gap:12px; align-items:start}
+  .panel{background:var(--card);padding:14px;border-radius:12px;min-height:220px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px;text-align:left;font-size:14px}
+  thead th{color:var(--muted);font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04)}
+  tbody tr{border-bottom:1px dashed rgba(255,255,255,0.03)}
+  .btn{padding:8px 10px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),#34d399);color:#042018;font-weight:700;cursor:pointer}
+  .small{font-size:12px;color:var(--muted)}
+  /* responsive */
+  @media (max-width:900px){
+    .app{padding:12px}
+    .sidebar{display:none}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .lower{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="mark">Cw</div>
+      <div>
+        <div style="font-weight:700">Chariow</div>
+        <div class="small">Prototype tableau de bord</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#" class="active">Tableau de bord</a>
+      <a href="#">Produits</a>
+      <a href="#">Ventes</a>
+      <a href="#">Clients</a>
+      <a href="#">Paramètres</a>
+    </nav>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+    <div class="small">Compte</div>
+    <div style="margin-top:8px">Elias Missihoun<br><span class="muted">getchariow</span></div>
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <div>
+        <h2 style="margin:0">Tableau de bord</h2>
+        <div class="small">Vue d'ensemble — Revenus, ventes et produits</div>
+      </div>
+      <div class="search">
+        <select id="period">
+          <option value="7">7 jours</option>
+          <option value="30" selected>30 jours</option>
+          <option value="90">90 jours</option>
+          <option value="365">1 an</option>
+        </select>
+        <input id="q" placeholder="Rechercher produit, client..." />
+        <button class="btn" id="refreshBtn">Actualiser</button>
+      </div>
+    </header>
+
+    <section class="kpis">
+      <div class="card">
+        <div class="muted">Revenus</div>
+        <div class="big" id="kpiRevenue">0 CFA</div>
+        <div class="small muted">Chiffre estimé sur la période</div>
+      </div>
+      <div class="card">
+        <div class="muted">Ventes</div>
+        <div class="big" id="kpiSales">0</div>
+        <div class="small muted">Nombre d'achats</div>
+      </div>
+      <div class="card">
+        <div class="muted">Produits</div>
+        <div class="big" id="kpiProducts">0</div>
+        <div class="small muted">Produits publiés</div>
+      </div>
+      <div class="card">
+        <div class="muted">Taux de conversion</div>
+        <div class="big" id="kpiConv">0%</div>
+        <div class="small muted">Visites → achats</div>
+      </div>
+    </section>
+
+    <section class="lower">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div>
+            <strong>Ventes (par jour)</strong>
+            <div class="small muted">Données simulées — connecte une API pour les réelles</div>
+          </div>
+          <div class="small">Période: <span id="periodLabel">30 jours</span></div>
+        </div>
+        <canvas id="salesChart" width="800" height="260" style="width:100%;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)"></canvas>
+      </div>
+
+      <aside class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <strong>Top produits</strong>
+          <button class="btn" id="exportBtn" style="padding:6px 8px">Exporter</button>
+        </div>
+        <table>
+          <thead><tr><th>Produit</th><th>Ventes</th><th>Revenu</th></tr></thead>
+          <tbody id="productsTbody"></tbody>
+        </table>
+      </aside>
+    </section>
+
+    <section class="panel" style="margin-top:8px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <strong>Catalogue</strong>
+        <div class="small muted">Recherche: <span id="qLabel">—</span></div>
+      </div>
+      <table id="catalogTable">
+        <thead><tr><th>Nom</th><th>Catégorie</th><th>Prix (CFA)</th><th>Statut</th></tr></thead>
+        <tbody id="catalogTbody"></tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+<script>
+/*
+  Prototype dashboard JS
+  - Données simulées (pour test)
+  - Points d'extension: remplacer fetchSimulatedData() par un fetch() vers ton API Chariow
+*/
+
+const sampleProducts = [
+  {id:1,name:"E-book: Lancer ton business",cat:"Ebook",price:3000, sold:52},
+  {id:2,name:"Formation vidéo: Marketing",cat:"Formation",price:12000, sold:18},
+  {id:3,name:"Template CV",cat:"Template",price:1500, sold:76},
+  {id:4,name:"Pack audio méditation",cat:"Audio",price:5000, sold:6},
+  {id:5,name:"Checklist productivité",cat:"Tool",price:800, sold:34},
+];
+
+function formatCFA(n){ return n.toLocaleString('fr-FR') + ' CFA'; }
+
+function simulateSales(periodDays){
+  // crée un tableau de 'periodDays' valeurs aléatoires
+  const arr=[];
+  for(let i=0;i<periodDays;i++){
+    arr.push(Math.max(0, Math.round( Math.random()*20 + (i%7==0?10:3) )));
+  }
+  return arr;
+}
+
+// Fonction d'extension: remplacer par fetch('/api/dashboard')...
+async function fetchSimulatedData(periodDays){
+  // simulé : retour d'objet proche d'une API réelle
+  const salesPerDay = simulateSales(periodDays);
+  const totalSales = salesPerDay.reduce((a,b)=>a+b,0);
+  const revenue = totalSales * 2500; // moyenne fictive
+  const products = sampleProducts.map(p=>({...p, revenue: p.sold * p.price}));
+  const totalProducts = products.length;
+  const conv = (Math.random()*4 + 1).toFixed(1);
+  return { salesPerDay, totalSales, revenue, products, totalProducts, conv };
+}
+
+/* UI binding */
+const kpiRevenue = document.getElementById('kpiRevenue');
+const kpiSales = document.getElementById('kpiSales');
+const kpiProducts = document.getElementById('kpiProducts');
+const kpiConv = document.getElementById('kpiConv');
+const salesChart = document.getElementById('salesChart');
+const productsTbody = document.getElementById('productsTbody');
+const catalogTbody = document.getElementById('catalogTbody');
+const periodSelect = document.getElementById('period');
+const periodLabel = document.getElementById('periodLabel');
+const qInput = document.getElementById('q');
+const qLabel = document.getElementById('qLabel');
+const refreshBtn = document.getElementById('refreshBtn');
+
+let currentData = null;
+
+async function loadDashboard(){
+  const pd = Number(periodSelect.value);
+  periodLabel.textContent = pd + ' jours';
+  currentData = await fetchSimulatedData(pd);
+  // KPI
+  kpiRevenue.textContent = formatCFA(currentData.revenue);
+  kpiSales.textContent = currentData.totalSales;
+  kpiProducts.textContent = currentData.totalProducts;
+  kpiConv.textContent = currentData.conv + '%';
+  // products list (top by sold)
+  const top = currentData.products.slice().sort((a,b)=>b.sold - a.sold).slice(0,5);
+  productsTbody.innerHTML = top.map(p=>`<tr><td>${p.name}</td><td>${p.sold}</td><td>${formatCFA(p.revenue)}</td></tr>`).join('');
+  // catalog (searchable)
+  renderCatalog(qInput.value);
+  // chart
+  drawSalesChart(currentData.salesPerDay);
+}
+
+function renderCatalog(query=''){
+  qLabel.textContent = query || '—';
+  const q = (query || '').toLowerCase();
+  const rows = sampleProducts.filter(p => !q || p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+  catalogTbody.innerHTML = rows.map(p => `<tr>
+    <td>${p.name}</td>
+    <td class="small muted">${p.cat}</td>
+    <td>${p.price.toLocaleString('fr-FR')}</td>
+    <td>${p.sold>0?'<span style="color:#34d399;font-weight:700">Publié</span>':'Brouillon'}</td>
+  </tr>`).join('');
+}
+
+/* Simple canvas bar chart (no libs) */
+function drawSalesChart(values){
+  const canvas = salesChart;
+  const ctx = canvas.getContext('2d');
+  const DPR = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth * DPR;
+  const h = canvas.clientHeight * DPR;
+  canvas.width = w; canvas.height = h;
+  ctx.clearRect(0,0,w,h);
+  // padding
+  const pad = 30*DPR;
+  const chartW = w - pad*2;
+  const chartH = h - pad*2;
+  const max = Math.max(...values) || 1;
+  const barW = chartW / values.length * 0.75;
+  // draw grid
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1*DPR;
+  ctx.beginPath();
+  for(let i=0;i<=4;i++){
+    const y = pad + (chartH/4)*i;
+    ctx.moveTo(pad, y);
+    ctx.lineTo(pad + chartW, y);
+  }
+  ctx.stroke();
+  // bars
+  for(let i=0;i<values.length;i++){
+    const v = values[i];
+    const x = pad + (chartW/values.length)*(i) + ((chartW/values.length)-barW)/2;
+    const bh = (v / max) * chartH;
+    const y = pad + (chartH - bh);
+    // gradient fill
+    const g = ctx.createLinearGradient(x, y, x, y+bh);
+    g.addColorStop(0, 'rgba(110,231,183,0.95)');
+    g.addColorStop(1, 'rgba(52,211,153,0.25)');
+    ctx.fillStyle = g;
+    roundRect(ctx, x, y, barW, bh, 4*DPR, true, false);
+  }
+  // x labels (some)
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = `${12*DPR}px Inter, Arial`;
+  const step = Math.ceil(values.length / 6);
+  for(let i=0;i<values.length;i+=step){
+    const x = pad + (chartW/values.length)*(i) + ((chartW/values.length)-barW)/2 + barW/2;
+    ctx.fillText((i+1).toString(), x - 6*DPR, h - 8*DPR);
+  }
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke){
+  if (typeof r === 'undefined') r = 5;
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+  if(fill){ ctx.fill(); }
+  if(stroke){ ctx.stroke(); }
+}
+
+/* events */
+periodSelect.addEventListener('change', ()=>loadDashboard());
+qInput.addEventListener('input', (e)=>renderCatalog(e.target.value));
+refreshBtn.addEventListener('click', ()=>loadDashboard());
+document.getElementById('exportBtn').addEventListener('click', ()=> {
+  const csvRows = [['Produit','Vendu','Revenu']];
+  currentData.products.forEach(p=>csvRows.push([p.name,p.sold,p.revenue]));
+  const csv = csvRows.map(r=>r.map(cell=>`"${cell}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'top_produits.csv'; a.click();
+  URL.revokeObjectURL(url);
+});
+
+/* init */
+loadDashboard();
+
+</script>
+</body>
+</html>

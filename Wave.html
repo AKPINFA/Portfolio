@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave - Interface Démo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff5a00;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff5a00;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e64b00;
+        }
+
+        .dashboard {
+            display: none;
+            text-align: center;
+        }
+
+        .dashboard button {
+            margin: 10px 0;
+        }
+
+        .balance {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="loginContainer">
+    <h1>Wave</h1>
+    <input type="text" id="phone" placeholder="Numéro de téléphone">
+    <input type="password" id="pin" placeholder="PIN">
+    <button onclick="login()">Se connecter</button>
+</div>
+
+<div class="container dashboard" id="dashboard">
+    <h1>Bienvenue, User</h1>
+    <div class="balance">Solde : <span id="solde">10 000 FCFA</span></div>
+    <button onclick="sendMoney()">Envoyer de l'argent</button>
+    <button onclick="payBill()">Payer une facture</button>
+    <button onclick="logout()">Se déconnecter</button>
+</div>
+
+<script>
+    function login() {
+        const phone = document.getElementById('phone').value;
+        const pin = document.getElementById('pin').value;
+
+        if(phone && pin) {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        } else {
+            alert('Veuillez entrer votre numéro et PIN');
+        }
+    }
+
+    function logout() {
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('loginContainer').style.display = 'block';
+        document.getElementById('phone').value = '';
+        document.getElementById('pin').value = '';
+    }
+
+    function sendMoney() {
+        const montant = prompt("Montant à envoyer (FCFA) :");
+        if(montant && !isNaN(montant)) {
+            alert(`${montant} FCFA envoyé avec succès !`);
+            // Ici tu peux réduire le solde
+        } else {
+            alert("Montant invalide");
+        }
+    }
+
+    function payBill() {
+        const bill = prompt("Nom de la facture :");
+        const montant = prompt("Montant de la facture (FCFA) :");
+        if(bill && montant && !isNaN(montant)) {
+            alert(`Facture ${bill} payée : ${montant} FCFA`);
+            // Ici tu peux réduire le solde
+        } else {
+            alert("Informations invalides");
+        }
+    }
+</script>
+
+</body>
+</html>

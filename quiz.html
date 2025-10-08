@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Mythologie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #2c2c2c;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #f1c40f;
+    }
+
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .option {
+      background: #34495e;
+      color: white;
+    }
+
+    .option.correct {
+      background: #27ae60;
+    }
+
+    .option.wrong {
+      background: #c0392b;
+    }
+
+    #next-btn {
+      background: #f39c12;
+      color: white;
+      display: none;
+    }
+
+    #score {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Mythologie</h1>
+    <div id="quiz">
+      <div id="question" class="question"></div>
+      <div id="options" class="options"></div>
+      <button id="next-btn">Question suivante</button>
+      <div id="score"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+  {
+    question: "Qui est le dieu grec de la mer ?",
+    options: ["Zeus", "Hadès", "Poséidon", "Apollon"],
+    answer: 2
+  },
+  {
+    question: "Dans la mythologie romaine, Jupiter correspond à quel dieu grec ?",
+    options: ["Hadès", "Zeus", "Arès", "Hermès"],
+    answer: 1
+  },
+  {
+    question: "Qui est la déesse grecque de la sagesse ?",
+    options: ["Héra", "Aphrodite", "Athéna", "Artémis"],
+    answer: 2
+  },
+  {
+    question: "Quel héros a tué le Minotaure ?",
+    options: ["Achille", "Thésée", "Héraclès", "Persée"],
+    answer: 1
+  },
+  {
+    question: "Comment s'appelle le royaume des morts dans la mythologie grecque ?",
+    options: ["L'Olympe", "Les Champs Élysées", "L'Hadès", "Tartare"],
+    answer: 2
+  },
+  {
+    question: "Qui est le messager des dieux dans la mythologie grecque ?",
+    options: ["Hermès", "Apollon", "Dionysos", "Arès"],
+    answer: 0
+  },
+  {
+    question: "Quelle déesse est née de l'écume de la mer ?",
+    options: ["Aphrodite", "Artémis", "Héra", "Gaïa"],
+    answer: 0
+  },
+  {
+    question: "Qui a volé le feu sacré aux dieux pour le donner aux hommes ?",
+    options: ["Prométhée", "Héraclès", "Orphée", "Persée"],
+    answer: 0
+  },
+  {
+    question: "Comment s'appelle le dieu romain de la guerre ?",
+    options: ["Mars", "Pluton", "Mercure", "Janus"],
+    answer: 0
+  },
+  {
+    question: "Qui est le frère de Zeus et maître des Enfers ?",
+    options: ["Apollon", "Hadès", "Poséidon", "Cronos"],
+    answer: 1
+  },
+  {
+    question: "Quel héros grec est connu pour sa force et ses douze travaux ?",
+    options: ["Héraclès", "Thésée", "Jason", "Achille"],
+    answer: 0
+  },
+  {
+    question: "Quelle créature est mi-femme, mi-oiseau, et attire les marins par son chant ?",
+    options: ["Méduse", "Sirène", "Sphinx", "Harpie"],
+    answer: 1
+  },
+  {
+    question: "Quelle est la boisson divine des dieux de l’Olympe ?",
+    options: ["Ambroisie", "Nectar", "Hydromel", "Vin"],
+    answer: 1
+  },
+  {
+    question: "Qui est le dieu grec du vin et de la fête ?",
+    options: ["Dionysos", "Apollon", "Hermès", "Arès"],
+    answer: 0
+  },
+  {
+    question: "Quel titan fut condamné à porter le ciel sur ses épaules ?",
+    options: ["Cronos", "Atlas", "Océan", "Hypérion"],
+    answer: 1
+  },
+
+  {
+  question: "Qui est la déesse grecque de la chasse et de la lune ?",
+  options: ["Athéna", "Artémis", "Héra", "Séléné"],
+  answer: 1
+},
+{
+  question: "Quel dieu romain est associé à l'amour et au désir ?",
+  options: ["Cupidon", "Mars", "Bacchus", "Janus"],
+  answer: 0
+},
+{
+  question: "Comment s'appelle le fleuve que les morts devaient traverser pour rejoindre les Enfers ?",
+  options: ["Tartare", "Styx", "Lethe", "Achéron"],
+  answer: 1
+},
+{
+  question: "Qui est la mère de Zeus, Poséidon et Hadès ?",
+  options: ["Gaïa", "Rhéa", "Héra", "Nyx"],
+  answer: 1
+},
+{
+  question: "Quel héros a affronté la Méduse et tranché sa tête ?",
+  options: ["Persée", "Thésée", "Achille", "Ulysse"],
+  answer: 0
+},
+{
+  question: "Quel est le nom latin d'Hadès dans la mythologie romaine ?",
+  options: ["Pluton", "Janus", "Mercure", "Saturne"],
+  answer: 0
+},
+{
+  question: "Quel dieu grec est associé à la musique, la poésie et le soleil ?",
+  options: ["Apollon", "Hermès", "Arès", "Dionysos"],
+  answer: 0
+},
+{
+  question: "Quelle créature garde les Enfers selon la mythologie grecque ?",
+  options: ["Cerbère", "Hydre", "Chimère", "Sphinx"],
+  answer: 0
+},
+{
+  question: "Qui est le roi des Titans, père de Zeus, Hadès et Poséidon ?",
+  options: ["Cronos", "Ouranos", "Atlas", "Océan"],
+  answer: 0
+},
+{
+  question: "Qui a conçu le labyrinthe pour enfermer le Minotaure ?",
+  options: ["Dédale", "Thésée", "Icare", "Orphée"],
+  answer: 0
+},
+{
+  question: "Quelle déesse romaine correspond à la déesse grecque Héra ?",
+  options: ["Junon", "Vénus", "Minerve", "Diane"],
+  answer: 0
+},
+{
+  question: "Quel héros grec est resté invulnérable sauf au talon ?",
+  options: ["Héraclès", "Achille", "Jason", "Ménélas"],
+  answer: 1
+},
+{
+  question: "Quelle muse inspire la poésie épique ?",
+  options: ["Calliope", "Clio", "Érato", "Terpsichore"],
+  answer: 0
+},
+{
+  question: "Quelle créature mythologique avait 9 têtes et repoussait quand on les coupait ?",
+  options: ["Hydre de Lerne", "Chimère", "Cerbère", "Méduse"],
+  answer: 0
+},
+{
+  question: "Quel dieu romain correspond à Hermès dans la mythologie grecque ?",
+  options: ["Mercure", "Mars", "Pluton", "Bacchus"],
+  answer: 0
+}
+
+];
+
+
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const nextBtn = document.getElementById("next-btn");
+    const scoreElement = document.getElementById("score");
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      nextBtn.innerText = "Question suivante";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      resetState();
+      let currentQuestion = questions[currentQuestionIndex];
+      questionElement.innerText = currentQuestion.question;
+
+      currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.innerText = option;
+        button.classList.add("option");
+        button.addEventListener("click", () => selectAnswer(index));
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function resetState() {
+      nextBtn.style.display = "none";
+      while (optionsElement.firstChild) {
+        optionsElement.removeChild(optionsElement.firstChild);
+      }
+    }
+
+    function selectAnswer(selectedIndex) {
+      const correctIndex = questions[currentQuestionIndex].answer;
+      const options = document.querySelectorAll(".option");
+
+      options.forEach((button, index) => {
+        if (index === correctIndex) {
+          button.classList.add("correct");
+        } else if (index === selectedIndex) {
+          button.classList.add("wrong");
+        }
+        button.disabled = true;
+      });
+
+      if (selectedIndex === correctIndex) {
+        score++;
+      }
+      nextBtn.style.display = "block";
+    }
+
+    function showScore() {
+      resetState();
+      questionElement.innerText = "Quiz terminé ! 🎉";
+      scoreElement.innerText = `Votre score : ${score} / ${questions.length}`;
+      nextBtn.innerText = "Rejouer";
+      nextBtn.style.display = "block";
+    }
+
+    function handleNextButton() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentQuestionIndex < questions.length) {
+        handleNextButton();
+      } else {
+        startQuiz();
+      }
+    });
+
+    startQuiz();
+  </script>
+</body>
+</html>
