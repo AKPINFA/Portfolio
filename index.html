@@ -22,12 +22,18 @@
       </div>
     </a>
     <nav class="links nav-mobile-hide">
-      <a href="#about">Profil</a>
-      <a href="#skills">Compétences</a>
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-i18n="navAbout">Profil</a>
+      <a href="#skills" data-i18n="navSkills">Compétences</a>
+      <a href="#projects" data-i18n="navProjects">Projets</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Basculer en mode plan (blueprint)" title="Mode plan / blueprint">🌙</button>
+    <div class="header-actions">
+      <div class="lang-switcher" role="tablist" aria-label="Language selector">
+        <button class="lang-switch active" type="button" data-lang="fr" aria-label="Français">🇫🇷 FR</button>
+        <button class="lang-switch" type="button" data-lang="en" aria-label="English">🇺🇸 EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Basculer en mode plan (blueprint)" title="Mode plan / blueprint">🌙</button>
+    </div>
   </div>
 </header>
 
@@ -36,29 +42,22 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">FIG. 00 — PROFIL</span>
-        <h1 class="hero-title">Hey!👋, je suis Exhaucé.</h1>
-        <span class="hero-role">Aspiring Engineer 🚀</span>
-        <p class="hero-lede">
+      <div class="hero-copy reveal">
+        <span class="eyebrow" data-i18n="heroEyebrow">FIG. 00 — PROFIL</span>
+        <h1 class="hero-title" data-i18n="heroTitle">Hey!👋, je suis Exhaucé.</h1>
+        <span class="hero-role" data-i18n="heroRole">Aspiring Engineer 🚀</span>
+        <p class="hero-lede" data-i18n="heroIntro">
           Actuellement étudiant en Génie Électrique et Informatique à l'Institut National Supérieur de
           Technologie Industrielle (INSTI) de Lokossa, je me spécialise en Informatique et
           Télécommunications. Du code qui tourne sur un serveur à celui qui tourne sur un microcontrôleur, des données qui transitent sur un réseau à celles qu'un modèle d'IA apprend à interpréter : mon terrain de jeu, c'est le logiciel, l'embarqué, les télécommunications, les bases de données et l'intelligence artificielle. Cinq briques que j'apprends à assembler pour construire des systèmes complets, du capteur jusqu'à l'utilisateur.
         </p>
         <div class="hero-ctas">
-          <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-          <a href="#contact" class="btn btn-ghost">Me contacter</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack-chip">PHP</span>
-          <span class="stack-chip">Laravel</span>
-          <span class="stack-chip">MySQL</span>
-          <span class="stack-chip">Python</span>
-          <span class="stack-chip">Git</span>
+          <a href="#projects" class="btn btn-primary" data-i18n="heroBtnProjects">Voir mes projets</a>
+          <a href="#contact" class="btn btn-ghost" data-i18n="heroBtnContact">Me contacter</a>
         </div>
       </div>
 
-      <div class="spec-card datasheet">
+      <div class="spec-card datasheet reveal">
         <div class="datasheet-title">
           <span>REF. AE-001</span>
           <span>DATASHEET</span>
@@ -86,21 +85,21 @@
         </svg>
 
         <div class="datasheet-row">
-          <span class="datasheet-key">NOM</span>
+          <span class="datasheet-key" data-i18n="datasheetName">NOM</span>
           <span class="datasheet-val">Exhaucé Perrin Cossi Trinité AKPINFA</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key">RÔLE</span>
+          <span class="datasheet-key" data-i18n="datasheetRole">RÔLE</span>
           <span class="datasheet-val">Aspiring Engineer 🚀</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key">ÉTABLISSEMENT</span>
+          <span class="datasheet-key" data-i18n="datasheetSchool">ÉTABLISSEMENT</span>
           <span class="datasheet-val">INSTI — Lokossa</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key">STATUT</span>
+          <span class="datasheet-key" data-i18n="datasheetStatus">STATUT</span>
           <span class="datasheet-val status-live">
-            <span class="led-dot"></span> Ouvert aux collaborations
+            <span class="led-dot"></span> <span data-i18n="datasheetStatusValue">Ouvert aux collaborations</span>
           </span>
         </div>
       </div>
@@ -110,15 +109,15 @@
   <!-- ============ ABOUT ============ -->
   <section id="about">
     <div class="wrap about-grid">
-      <div class="about-text">
-        <span class="eyebrow">FIG. 01 — À PROPOS</span>
-        <h2 class="section-title" style="margin-bottom:18px;">Approche &amp; parcours</h2>
-        <p class="lede">
+      <div class="about-text reveal">
+        <span class="eyebrow" data-i18n="aboutEyebrow">FIG. 01 — À PROPOS</span>
+        <h2 class="section-title" style="margin-bottom:18px;" data-i18n="aboutTitle">Approche &amp; parcours</h2>
+        <p class="lede" data-i18n="aboutP1">
           Je construis des systèmes en partant du problème, pas de l'outil : comprendre les contraintes
           réelles avant d'écrire une ligne de code, documenter mes choix, et livrer des solutions que je
           peux défendre techniquement — c'est le standard que je me fixe, quel que soit le projet.
         </p>
-        <p>
+        <p data-i18n="aboutP2">
           Au-delà de ma formation technique, je cultive des passions variées qui forgent ma vision du monde et ma discipline. Je crois que l'équilibre entre rigueur académique et curiosité intellectuelle est essentiel pour devenir un ingénieur complet.
         </p>
         <div class="interest-list">
@@ -131,22 +130,22 @@
         </div>
       </div>
 
-      <div class="spec-card facts-card">
-        <div class="datasheet-title"><span>FICHE RAPIDE</span></div>
+      <div class="spec-card facts-card reveal">
+        <div class="datasheet-title"><span data-i18n="aboutQuickCard">FICHE RAPIDE</span></div>
         <div class="datasheet-row">
-          <span class="datasheet-key mono">Formation</span>
+          <span class="datasheet-key mono" data-i18n="aboutFormation">Formation</span>
           <span class="datasheet-val">Génie Électrique &amp; Info.</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key mono">Spécialité</span>
+          <span class="datasheet-key mono" data-i18n="aboutSpeciality">Spécialité</span>
           <span class="datasheet-val">Info. &amp; Télécoms</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key mono">Établissement</span>
+          <span class="datasheet-key mono" data-i18n="aboutSchool">Établissement</span>
           <span class="datasheet-val">INSTI, Lokossa</span>
         </div>
         <div class="datasheet-row">
-          <span class="datasheet-key mono">Objectif</span>
+          <span class="datasheet-key mono" data-i18n="aboutGoal">Objectif</span>
           <span class="datasheet-val">Ingénieur en systèmes embarqués connectés / IoT</span>
         </div>
       </div>
@@ -156,166 +155,154 @@
   <!-- ============ SKILLS ============ -->
   <section id="skills">
     <div class="wrap">
-      <span class="eyebrow">FIG. 02 — COMPÉTENCES</span>
-      <h2 class="section-title" style="margin-bottom:30px;">Stack technique</h2>
-      <div class="skills-grid">
-        <div class="spec-card skill-card">
-          <div class="skill-name">HTML</div>
-          <div class="skill-desc">Structure web</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+      <div class="skills-head reveal">
+        <div>
+          <span class="eyebrow" data-i18n="skillsEyebrow">FIG. 02 — COMPÉTENCES</span>
+          <h2 class="section-title" style="margin-bottom:10px;" data-i18n="skillsTitle">Stack technique</h2>
+          <p class="skills-intro" data-i18n="skillsIntro">Des technologies que je pratique avec une approche orientée produit et apprentissage continu.</p>
         </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">CSS</div>
-          <div class="skill-desc">Design &amp; layouts</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">JavaScript</div>
-          <div class="skill-desc">Vue / React / Node</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">PHP</div>
-          <div class="skill-desc">Backend / Laravel</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">MySQL</div>
-          <div class="skill-desc">Conception BD</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">Python</div>
-          <div class="skill-desc">Data &amp; scripts</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">C++</div>
-          <div class="skill-desc">Programmation système</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">Java POO</div>
-          <div class="skill-desc">Programmation orientée objet</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">UML</div>
-          <div class="skill-desc">Modélisation &amp; design</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">Git &amp; GitHub</div>
-          <div class="skill-desc">Versioning</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
-        </div>
-        <div class="spec-card skill-card">
-          <div class="skill-name">Telecoms</div>
-          <div class="skill-desc">Réseaux &amp; systèmes</div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skills-marquee reveal" aria-label="Technologies principales">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="12" fill="currentColor" opacity="0.12"/><path d="M22 20h20v8H22zM22 28h12v16H22zM36 28h6v16h-6z" fill="currentColor"/></svg><span>C++</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="12" width="44" height="40" rx="10" fill="currentColor" opacity="0.12"/><path d="M24 20h16v6H24zM22 30h20v6H22zM26 40h12v6H26z" fill="currentColor"/></svg><span>POO</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="12" fill="currentColor" opacity="0.12"/><path d="M20 20h24v8H20zM20 32h12v12H20zM34 32h10v12H34z" fill="currentColor"/></svg><span>Java</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 18c0-4 3-7 7-7h14c4 0 7 3 7 7v6H18z" fill="currentColor" opacity="0.16"/><path d="M18 24h28v18a6 6 0 0 1-6 6H24a6 6 0 0 1-6-6z" fill="currentColor" opacity="0.2"/><circle cx="32" cy="33" r="6" fill="currentColor"/></svg><span>Python</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="12" width="40" height="40" rx="10" fill="currentColor" opacity="0.12"/><path d="M22 20h20v8H22zM22 32h8v12h-8zM34 32h8v12h-8z" fill="currentColor"/></svg><span>PHP</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="32" rx="8" fill="currentColor" opacity="0.12"/><path d="M24 24h16v6H24zM24 34h16v6H24z" fill="currentColor"/></svg><span>MySQL</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 18h28a6 6 0 0 1 6 6v16a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6Z" fill="currentColor" opacity="0.12"/><path d="M22 24v16l10-6 10 6V24" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Laravel</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="44" height="36" rx="10" fill="currentColor" opacity="0.12"/><path d="M22 22h20v20H22z" fill="currentColor" opacity="0.22"/><path d="M26 30h12v4H26zM26 38h8v4h-8z" fill="currentColor"/></svg><span>React</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 18c0-4 3-7 7-7h18c4 0 7 3 7 7v28c0 4-3 7-7 7H23c-4 0-7-3-7-7z" fill="currentColor" opacity="0.12"/><path d="M24 20v24M40 20v24" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span>Node</span></div>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="12" fill="currentColor" opacity="0.12"/><path d="M22 20h20v8H22zM22 28h12v16H22zM36 28h6v16h-6z" fill="currentColor"/></svg><span>C++</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="12" width="44" height="40" rx="10" fill="currentColor" opacity="0.12"/><path d="M24 20h16v6H24zM22 30h20v6H22zM26 40h12v6H26z" fill="currentColor"/></svg><span>POO</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="12" fill="currentColor" opacity="0.12"/><path d="M20 20h24v8H20zM20 32h12v12H20zM34 32h10v12H34z" fill="currentColor"/></svg><span>Java</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 18c0-4 3-7 7-7h14c4 0 7 3 7 7v6H18z" fill="currentColor" opacity="0.16"/><path d="M18 24h28v18a6 6 0 0 1-6 6H24a6 6 0 0 1-6-6z" fill="currentColor" opacity="0.2"/><circle cx="32" cy="33" r="6" fill="currentColor"/></svg><span>Python</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="12" width="40" height="40" rx="10" fill="currentColor" opacity="0.12"/><path d="M22 20h20v8H22zM22 32h8v12h-8zM34 32h8v12h-8z" fill="currentColor"/></svg><span>PHP</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="32" rx="8" fill="currentColor" opacity="0.12"/><path d="M24 24h16v6H24zM24 34h16v6H24z" fill="currentColor"/></svg><span>MySQL</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 18h28a6 6 0 0 1 6 6v16a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6Z" fill="currentColor" opacity="0.12"/><path d="M22 24v16l10-6 10 6V24" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Laravel</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="44" height="36" rx="10" fill="currentColor" opacity="0.12"/><path d="M22 22h20v20H22z" fill="currentColor" opacity="0.22"/><path d="M26 30h12v4H26zM26 38h8v4h-8z" fill="currentColor"/></svg><span>React</span></div>
+            <div class="skill-pill"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 18c0-4 3-7 7-7h18c4 0 7 3 7 7v28c0 4-3 7-7 7H23c-4 0-7-3-7-7z" fill="currentColor" opacity="0.12"/><path d="M24 20v24M40 20v24" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><span>Node</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROJECTS (contenu inchangé) ============ -->
+  <!-- ============ PROJECTS ============ -->
   <section id="projects">
     <div class="wrap">
-      <span class="eyebrow">FIG. 03 — PROJETS</span>
-      <h2 class="section-title" style="margin-bottom:30px;">Réalisations</h2>
-      <div class="projects-grid">
-
-        <div class="spec-card project-card">
-          <div class="project-top">
-            <div class="project-name">Calculatrice App</div>
-            <span class="project-stack-badge">Fullstack</span>
+      <div class="section-title-row reveal">
+        <div>
+          <span class="eyebrow" data-i18n="projectsEyebrow">FIG. 03 — PROJETS</span>
+          <h2 class="section-title" data-i18n="projectsTitle">Réalisations</h2>
+        </div>
+      </div>
+      <div class="projects-marquee">
+        <div class="projects-track">
+          <div class="projects-group">
+            <div class="spec-card project-card" id="project-demo-1">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project1Name">Calculatrice App</div>
+                <span class="project-stack-badge" data-i18n="project1Badge">Fullstack</span>
+              </div>
+              <div class="project-desc" data-i18n="project1Desc">Calculatrice.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/calculatrice.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
+            <div class="spec-card project-card" id="project-demo-2">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project2Name">Quiz App</div>
+                <span class="project-stack-badge">Vue.js</span>
+              </div>
+              <div class="project-desc" data-i18n="project2Desc">Application de quiz responsive, modes chrono et score dynamique.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/Wave.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
+            <div class="spec-card project-card" id="project-demo-3">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project3Name">Chariow-Bord</div>
+                <span class="project-stack-badge">Vue / Laravel</span>
+              </div>
+              <div class="project-desc" data-i18n="project3Desc">Un tableau de bord similaire à celui de Chariow.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/Dashborad%20chariow.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
           </div>
-          <div class="project-desc">Calculatrice.</div>
-          <div class="tag-row">
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+          <div class="projects-group" aria-hidden="true">
+            <div class="spec-card project-card" id="project-demo-1-copy">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project1Name">Calculatrice App</div>
+                <span class="project-stack-badge" data-i18n="project1Badge">Fullstack</span>
+              </div>
+              <div class="project-desc" data-i18n="project1Desc">Calculatrice.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/calculatrice.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
+            <div class="spec-card project-card" id="project-demo-2-copy">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project2Name">Quiz App</div>
+                <span class="project-stack-badge">Vue.js</span>
+              </div>
+              <div class="project-desc" data-i18n="project2Desc">Application de quiz responsive, modes chrono et score dynamique.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/Wave.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
+            <div class="spec-card project-card" id="project-demo-3-copy">
+              <div class="project-top">
+                <div class="project-name" data-i18n="project3Name">Chariow-Bord</div>
+                <span class="project-stack-badge">Vue / Laravel</span>
+              </div>
+              <div class="project-desc" data-i18n="project3Desc">Un tableau de bord similaire à celui de Chariow.</div>
+              <div class="tag-row">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <a href="https://github.com/AKPINFA/Portfolio/blob/main/Dashborad%20chariow.html" target="_blank" rel="noopener" class="btn btn-ghost demo-btn">Démonstration</a>
+            </div>
           </div>
         </div>
-
-        <div class="spec-card project-card">
-          <div class="project-top">
-            <div class="project-name">Quiz App</div>
-            <span class="project-stack-badge">Vue.js</span>
-          </div>
-          <div class="project-desc">Application de quiz responsive, modes chrono et score dynamique.</div>
-          <div class="tag-row">
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
-          </div>
-        </div>
-
-        <div class="spec-card project-card">
-          <div class="project-top">
-            <div class="project-name">Chariow-Bord</div>
-            <span class="project-stack-badge">Vue / Laravel</span>
-          </div>
-          <div class="project-desc">Un tableau de bord simillaire à celui de chariow .</div>
-          <div class="tag-row">
-            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ============ FUTURS PROJETS (contenu inchangé) ============ -->
+  <!-- ============ FUTURS PROJETS ============ -->
   <section id="backlog">
     <div class="wrap">
-      <span class="eyebrow">FIG. 04 — R&amp;D / BACKLOG</span>
-      <h2 class="section-title" style="margin-bottom:30px;">Futurs projets</h2>
+      <span class="eyebrow" data-i18n="backlogEyebrow">FIG. 04 — R&amp;D / BACKLOG</span>
+      <h2 class="section-title" style="margin-bottom:30px;" data-i18n="backlogTitle">Futurs projets</h2>
       <div class="backlog-list">
         <div class="backlog-item">
           <div>
-            <div class="backlog-name">App de message anonyme</div>
-            <span class="backlog-status">En réflexion</span>
+            <div class="backlog-name" data-i18n="backlog2Name">Station météo connectée</div>
+            <span class="backlog-status" data-i18n="backlog2Status">En réflexion</span>
           </div>
-          <div class="backlog-desc">Plateforme de messagerie anonyme avec authentification et historique.</div>
+          <div class="backlog-desc" data-i18n="backlog2Desc">Boîtier Arduino qui collecte et affiche données météo en temps réel sur web.</div>
         </div>
         <div class="backlog-item">
           <div>
-            <div class="backlog-name">Station météo connectée</div>
-            <span class="backlog-status">En réflexion</span>
+            <div class="backlog-name" data-i18n="backlog6Name">Chatbot IA</div>
+            <span class="backlog-status" data-i18n="backlog6Status">En réflexion</span>
           </div>
-          <div class="backlog-desc">Boîtier Arduino qui collecte et affiche données météo en temps réel sur web.</div>
+          <div class="backlog-desc" data-i18n="backlog6Desc">Assistant virtuel pour infos campus &amp; FAQ.</div>
         </div>
         <div class="backlog-item">
           <div>
-            <div class="backlog-name">Système de surveillance IoT</div>
-            <span class="backlog-status">En réflexion</span>
+            <div class="backlog-name" data-i18n="backlog8Name">SaaS de conversion de PDF en audio</div>
+            <span class="backlog-status" data-i18n="backlog8Status">En réflexion</span>
           </div>
-          <div class="backlog-desc">Réseau de capteurs avec alertes temps réel, authentification et historique BD.</div>
-        </div>
-        <div class="backlog-item">
-          <div>
-            <div class="backlog-name">Journal Anime</div>
-            <span class="backlog-status">En réflexion</span>
-          </div>
-          <div class="backlog-desc">Écrire et partager tes ressentis sur les épisodes d'anime.</div>
-        </div>
-        <div class="backlog-item">
-          <div>
-            <div class="backlog-name">IA de recommandations</div>
-            <span class="backlog-status">En réflexion</span>
-          </div>
-          <div class="backlog-desc">Système de suggestions de cours &amp; groupes d'étude.</div>
-        </div>
-        <div class="backlog-item">
-          <div>
-            <div class="backlog-name">Chatbot IA</div>
-            <span class="backlog-status">En réflexion</span>
-          </div>
-          <div class="backlog-desc">Assistant virtuel pour infos campus &amp; FAQ.</div>
-        </div>
-        <div class="backlog-item">
-          <div>
-            <div class="backlog-name">Smart Campus App</div>
-            <span class="backlog-status">En réflexion</span>
-          </div>
-          <div class="backlog-desc">Système académique intelligent — notes, emploi du temps et IA.</div>
+          <div class="backlog-desc" data-i18n="backlog8Desc">Plateforme web qui transforme des fichiers PDF en audio narré avec options de vitesse et de langues.</div>
         </div>
       </div>
     </div>
@@ -325,24 +312,24 @@
   <section id="contact">
     <div class="wrap contact-grid">
       <div>
-        <span class="eyebrow">FIG. 05 — CONTACT</span>
-        <h2 class="section-title" style="margin-bottom:24px;">Laisse moi un petit message 😊</h2>
+        <span class="eyebrow" data-i18n="contactEyebrow">FIG. 05 — CONTACT</span>
+        <h2 class="section-title" style="margin-bottom:24px;" data-i18n="contactTitle">Laisse moi un petit message 😊</h2>
         <form id="contactForm">
           <div class="field">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" placeholder="Ton nom" required />
+            <label for="name" data-i18n="contactNameLabel">Nom</label>
+            <input type="text" id="name" name="name" data-i18n-placeholder="contactNamePlaceholder" placeholder="Ton nom" required />
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="XYZ@exemple.com" required />
+            <label for="email" data-i18n="contactEmailLabel">Email</label>
+            <input type="email" id="email" name="email" data-i18n-placeholder="contactEmailPlaceholder" placeholder="XYZ@exemple.com" required />
           </div>
           <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Ton message" required></textarea>
+            <label for="message" data-i18n="contactMessageLabel">Message</label>
+            <textarea id="message" name="message" rows="4" data-i18n-placeholder="contactMessagePlaceholder" placeholder="Ton message" required></textarea>
           </div>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-            <button type="reset" class="btn btn-ghost">Effacer</button>
+            <button type="submit" class="btn btn-primary" data-i18n="contactSubmit">Envoyer</button>
+            <button type="reset" class="btn btn-ghost" data-i18n="contactReset">Effacer</button>
           </div>
         </form>
       </div>
@@ -351,22 +338,22 @@
         <a class="spec-card direct-link" href="https://akpinfa.github.io/Portfolio" target="_blank" rel="noopener">
           <span class="ic">🔗</span>
           <span>
-            <span class="direct-link-title" style="display:block;">GitHub</span>
+            <span class="direct-link-title" style="display:block;" data-i18n="contactGithub">GitHub</span>
             <span class="direct-link-sub">akpinfa.github.io/Portfolio</span>
           </span>
         </a>
         <a class="spec-card direct-link" href="mailto:aexhauce@gmail.com">
           <span class="ic">✉️</span>
           <span>
-            <span class="direct-link-title" style="display:block;">Email</span>
+            <span class="direct-link-title" style="display:block;" data-i18n="contactEmail">Email</span>
             <span class="direct-link-sub">aexhauce@gmail.com</span>
           </span>
         </a>
         <a class="spec-card direct-link" href="https://wa.me/qr/JQLBW744HTAOM1" target="_blank" rel="noopener">
           <span class="ic">📱</span>
           <span>
-            <span class="direct-link-title" style="display:block;">WhatsApp</span>
-            <span class="direct-link-sub">Discuter directement</span>
+            <span class="direct-link-title" style="display:block;" data-i18n="contactWhatsapp">WhatsApp</span>
+            <span class="direct-link-sub" data-i18n="contactWhatsappSub">Discuter directement</span>
           </span>
         </a>
       </div>
@@ -377,7 +364,7 @@
 
 <footer>
   <div class="wrap">
-    <p>© <span id="year"></span> Exhaucé AKPINFA — Portfolio.</p>
+    <p data-i18n="footerText">© <span id="year"></span> Exhaucé AKPINFA — Portfolio.</p>
   </div>
 </footer>
 
