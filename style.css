@@ -140,7 +140,7 @@
     transition:transform .2s ease, box-shadow .2s ease;
   }
   .theme-toggle:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(23,27,23,0.12);}
-  .lang-switcher{display:flex; gap:8px; flex-wrap:wrap;}
+  .lang-switcher{display:flex; gap:8px; align-items:center;}
   .lang-switch{
     border:1px solid var(--line); background:var(--bg-card); color:var(--ink);
     padding:7px 10px; border-radius:999px; cursor:pointer; font-family:'IBM Plex Mono', monospace;
@@ -148,6 +148,19 @@
   }
   .lang-switch.active, .lang-switch:hover{
     background:var(--accent-soft); color:var(--accent); border-color:var(--accent);
+  }
+  .cv-icon{
+    width:34px; height:34px; display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.08); border-radius:12px; background:rgba(255,255,255,0.04);
+    color:var(--ink-soft); text-decoration:none; font-size:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  }
+  .cv-icon:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+    background:rgba(255,255,255,0.08);
+    color:var(--ink);
   }
   .nav-mobile-hide{display:flex;}
   @media (max-width:720px){
