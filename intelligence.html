@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DataVision AI - Analytics Platform</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+/* =====================
+   GLOBAL
+===================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+    background:#07111f;
+    color:white;
+}
+
+
+/* =====================
+   LAYOUT
+===================== */
+
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+
+/* =====================
+   SIDEBAR
+===================== */
+
+
+.sidebar{
+
+    width:260px;
+    background:#0d1b2a;
+    padding:30px;
+
+}
+
+
+.logo{
+
+    color:#00e5ff;
+    font-size:25px;
+    margin-bottom:40px;
+
+}
+
+
+.menu li{
+
+    list-style:none;
+    padding:15px;
+    margin:10px 0;
+    color:#b8c7d9;
+    cursor:pointer;
+    border-radius:10px;
+
+}
+
+
+.menu li:hover,
+.menu .active{
+
+    background:#00e5ff;
+    color:#000;
+
+}
+
+
+
+/* =====================
+   CONTENT
+===================== */
+
+
+.content{
+
+    flex:1;
+    padding:35px;
+
+}
+
+
+header h1{
+
+    font-size:32px;
+
+}
+
+
+header p{
+
+    color:#9aa8b8;
+    margin-top:10px;
+
+}
+
+
+
+/* =====================
+   KPI
+===================== */
+
+
+.kpis{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-top:30px;
+
+}
+
+
+
+.card{
+
+    background:#102a43;
+    padding:25px;
+    border-radius:20px;
+
+}
+
+
+.card h3{
+
+    color:#9aa8b8;
+
+}
+
+
+.card h2{
+
+    margin-top:20px;
+    color:#00e5ff;
+    font-size:35px;
+
+}
+
+
+
+/* =====================
+   CHARTS
+===================== */
+
+
+.charts{
+
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    margin-top:30px;
+
+}
+
+
+
+.box{
+
+    background:#102a43;
+    padding:25px;
+    border-radius:20px;
+
+}
+
+
+
+/* =====================
+   TABLE
+===================== */
+
+
+.table-box{
+
+    margin-top:30px;
+    background:#102a43;
+    padding:25px;
+    border-radius:20px;
+
+}
+
+
+
+table{
+
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+
+}
+
+
+th,td{
+
+    padding:15px;
+    border-bottom:1px solid #243b53;
+    text-align:left;
+
+}
+
+
+.success{
+
+    color:#00ff99;
+
+}
+
+
+.pending{
+
+    color:#ffaa00;
+
+}
+
+
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+
+@media(max-width:900px){
+
+.kpis{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+
+.charts{
+
+grid-template-columns:1fr;
+
+}
+
+.sidebar{
+
+display:none;
+
+}
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+📊 DataVision AI
+</div>
+
+
+<ul class="menu">
+
+<li class="active">
+Dashboard
+</li>
+
+<li>
+Analytics
+</li>
+
+<li>
+Reports
+</li>
+
+<li>
+Customers
+</li>
+
+<li>
+Settings
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+
+
+<!-- MAIN -->
+
+<main class="content">
+
+
+<header>
+
+<h1>
+Real-Time Business Analytics
+</h1>
+
+<p>
+Plateforme intelligente de visualisation stratégique
+</p>
+
+</header>
+
+
+
+
+<!-- KPI -->
+
+
+<section class="kpis">
+
+
+<div class="card">
+
+<h3>
+💰 Revenus
+</h3>
+
+<h2 id="revenue">
+125000 €
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+👥 Utilisateurs
+</h3>
+
+<h2 id="users">
+8450
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+📈 Croissance
+</h3>
+
+<h2>
++24%
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+⚡ Performance
+</h3>
+
+<h2>
+96%
+</h2>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- GRAPHIQUES -->
+
+
+<section class="charts">
+
+
+<div class="box">
+
+<h2>
+Evolution des ventes
+</h2>
+
+<canvas id="salesChart"></canvas>
+
+
+</div>
+
+
+
+
+<div class="box">
+
+<h2>
+Clients
+</h2>
+
+<canvas id="clientChart"></canvas>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- TABLE -->
+
+
+<section class="table-box">
+
+
+<h2>
+Dernières opérations
+</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>ID</th>
+<th>Client</th>
+<th>Service</th>
+<th>Montant</th>
+<th>Status</th>
+
+</tr>
+
+
+<tr>
+
+<td>#001</td>
+<td>Entreprise Alpha</td>
+<td>Cloud</td>
+<td>2500€</td>
+<td class="success">
+Payé
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>#002</td>
+<td>Entreprise Beta</td>
+<td>SaaS</td>
+<td>900€</td>
+<td class="pending">
+En attente
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>#003</td>
+<td>Entreprise Gamma</td>
+<td>Data</td>
+<td>3500€</td>
+<td class="success">
+Payé
+</td>
+
+</tr>
+
+
+</table>
+
+
+</section>
+
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+// ========================
+// GRAPH VENTES
+// ========================
+
+
+new Chart(
+
+document.getElementById("salesChart"),
+
+{
+
+type:"line",
+
+data:{
+
+
+labels:[
+"Jan",
+"Fev",
+"Mar",
+"Avr",
+"Mai",
+"Juin"
+],
+
+
+datasets:[{
+
+label:"Revenus",
+
+data:[
+12000,
+18000,
+15000,
+26000,
+35000,
+45000
+],
+
+
+borderWidth:3
+
+}]
+
+
+}
+
+}
+
+);
+
+
+
+
+
+
+// ========================
+// GRAPH CLIENTS
+// ========================
+
+
+new Chart(
+
+document.getElementById("clientChart"),
+
+{
+
+type:"doughnut",
+
+data:{
+
+
+labels:[
+
+"Premium",
+"Standard",
+"Entreprise"
+
+],
+
+
+datasets:[{
+
+data:[
+
+40,
+35,
+25
+
+]
+
+}]
+
+
+}
+
+
+}
+
+);
+
+
+
+
+
+
+// ========================
+// SIMULATION TEMPS REEL
+// ========================
+
+
+let revenue = 125000;
+
+let users = 8450;
+
+
+setInterval(()=>{
+
+
+revenue += Math.floor(Math.random()*1000);
+
+users += Math.floor(Math.random()*15);
+
+
+
+document.getElementById("revenue").innerHTML =
+revenue.toLocaleString()+" €";
+
+
+
+document.getElementById("users").innerHTML =
+users;
+
+
+
+},3000);
+
+
+
+</script>
+
+
+
+</body>
+</html>
