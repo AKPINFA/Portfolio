@@ -365,21 +365,17 @@
   @keyframes marquee{
     from{transform:translateX(0);} to{transform:translateX(-50%);} 
   }
-  @keyframes marqueeProjects{
-    from{transform:translateX(0);} to{transform:translateX(-50%);} 
-  }
   @media (prefers-reduced-motion: reduce){
-    .marquee-track, .projects-track{animation:none;}
+    .marquee-track{animation:none;}
   }
 
   /* ---------- Projects ---------- */
-  .projects-marquee{overflow:hidden; padding:6px 0;}
-  .projects-track{display:flex; width:max-content; gap:20px; animation:marqueeProjects 24s linear infinite;}
-  .projects-group{display:flex; gap:20px;}
-  .project-card{padding:22px; display:flex; flex-direction:column; gap:12px; min-width:280px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;}
+  .project-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:20px;}
+  .project-card{padding:22px; display:flex; flex-direction:column; gap:12px; min-width:0; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;}
   .project-card:hover{transform:translateY(-4px); border-color:var(--accent); box-shadow:0 20px 35px rgba(23,27,23,0.12);}
+  .project-image{display:block; width:100%; aspect-ratio:16 / 9; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius);}
   .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
-  .project-name{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px;}
+  .project-name{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; margin:0;}
   .project-stack-badge{
     font-family:'IBM Plex Mono', monospace; font-size:10.5px;
     color:var(--accent2); background:var(--accent2-soft);
@@ -391,6 +387,9 @@
     font-family:'IBM Plex Mono', monospace; font-size:10.5px;
     padding:3px 8px; border:1px solid var(--line); border-radius:3px;
     color:var(--ink-soft);
+  }
+  @media (max-width:760px){
+    .project-grid{grid-template-columns:1fr;}
   }
 
   /* ---------- Backlog / futurs projets ---------- */
